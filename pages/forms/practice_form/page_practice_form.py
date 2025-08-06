@@ -1,18 +1,19 @@
 from datetime import datetime
 from selene import browser, be, have
+
+from config.links import Links
 from const import UPLOADED_FILE
 from data.user_info import UsersForTests as Users
 
 
 class PracticeFormPage:
 
-    URL = '/automation-practice-form'
+    URL = Links.PRACTICE_FORM
 
     user = Users().choose_random_user()
 
     def open_page(self):
         browser.open(self.URL)
-        return self
 
     def registration_random_user_and_submit_form(self) -> None:
         browser.element('#firstName').should(be.blank).type(self.user.first_name).should(be.not_.blank).should(
@@ -25,7 +26,7 @@ class PracticeFormPage:
             have.text(self.user.gender)).click().should(be.enabled)
         browser.element('#userNumber').should(be.blank).send_keys(self.user.user_number).should(
             be.not_.blank).should(have.attribute("value").value(self.user.user_number))
-        browser.element('#dateOfBirthInput').click()
+        browser.element('#dateOfBirthInput').should(be.visible).click()
         browser.element('.react-datepicker__month-select').click().all('[value]').element_by(
             have.text(self.user.birth_month)).click()
         browser.element('.react-datepicker__year-select').click().all('[value]').element_by(
@@ -35,12 +36,12 @@ class PracticeFormPage:
         browser.element('#dateOfBirthInput').should(be.not_.blank).should(have.attribute("value").value(
             f'{int(self.user.birth_day):02d} {self.user.birth_month[:3]} {self.user.birth_year}'))
         for subject in self.user.subjects:
-            browser.element('#subjectsInput').type(subject).press_enter()
+            browser.element('#subjectsInput').should(be.visible).type(subject).press_enter()
         for hobby in self.user.hobbies:
             browser.all('label[class="custom-control-label"]').element_by(
-                have.text(hobby)).click().should(be.enabled)
+                have.text(hobby)).should(be.visible).click().should(be.enabled)
         browser.element('#uploadPicture').send_keys(UPLOADED_FILE)
-        browser.element('#currentAddress').should(be.blank).type(self.user.current_address).should(
+        browser.element('#currentAddress').should(be.visible).should(be.blank).type(self.user.current_address).should(
             be.not_.blank).should(have.attribute("value").value(self.user.current_address))
         browser.element('#state').click().all('[tabindex="-1"]').element_by(have.text(self.user.state)).click()
         browser.element('#city').click().all('[tabindex="-1"]').element_by(have.text(self.user.city)).click()
