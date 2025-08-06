@@ -14,7 +14,7 @@ class PracticeFormPage:
     def open_page(self) -> browser:
         browser.open(self.URL)
 
-    def register_user_male_and_submit_form(self) -> None:
+    def registration_random_user_and_submit_form(self) -> None:
         browser.element('#firstName').should(be.blank).type(self.user.first_name).should(be.not_.blank).should(
             have.attribute("value").value(self.user.first_name))
         browser.element('#lastName').should(be.blank).type(self.user.last_name).should(be.not_.blank).should(
@@ -46,7 +46,7 @@ class PracticeFormPage:
         browser.element('#city').click().all('[tabindex="-1"]').element_by(have.text(self.user.city)).click()
         browser.element('#submit').should(be.clickable).click()
 
-    def should_table_be_filled(self) -> None:
+    def should_that_table_be_filled(self) -> None:
         table_element = browser.all('table.table-dark tbody tr')
         table_element.element_by(have.text('Student Name')).all('td').second.should(
             have.text(f"{self.user.first_name} {self.user.last_name}"))
@@ -88,7 +88,7 @@ class PracticeFormPage:
         browser.element('#stateCity-wrapper').should(have.text('State and City'))
 
     @staticmethod
-    def form_not_filled_and_not_submit() -> None:
+    def form_not_filled_and_not_submitted() -> None:
         browser.element('#submit').click()
         # browser.element('.modal-title').should(have.text('Thanks for submitting the form'))
         browser.element('.modal-title').should(be.not_.present)
