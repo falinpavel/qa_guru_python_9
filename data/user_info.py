@@ -47,7 +47,8 @@ class UsersForTests:
                      birth_day=str(random.randint(a=4, b=28)),
                      birth_month=fake.random_elements(elements=('January', 'February', 'March', 'April', 'May',
                                                                 'June', 'July', 'August', 'September', 'October',
-                                                                'November', 'December'), length=1)[0],
+                                                                'November', 'December'),
+                                                      length=1)[0],
                      birth_year=str(fake.year()),
                      subjects=list(fake.random_elements(elements=('Maths', 'English', 'Computer Science',
                                                                   'Chemistry', 'Physics', 'Biology', 'Accounting',
@@ -57,7 +58,7 @@ class UsersForTests:
                                                        length=random.randint(a=1, b=2))),
                      current_address=fake.address(),
                      # state=fake.random_elements(elements=('NCR', 'Uttar Pradesh',
-                     # 'Haryana', 'Rajasthan'), length=1)[0], TODO fix
+                     # 'Haryana', 'Rajasthan'), length=1)[0], TODO!!! fix
                      state='Uttar Pradesh',
                      city=fake.random_elements(elements=('Agra', 'Lucknow', 'Merrut'), length=1)[0])
             users.append(_)
