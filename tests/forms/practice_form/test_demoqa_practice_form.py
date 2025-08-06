@@ -1,7 +1,6 @@
-from pages.forms.practice_form.page_practice_form import PracticeFormPage
 
 
-class TestPracticeForm(PracticeFormPage):
+class TestPracticeForm:
 
     def test_success_submission_practice_form(self, practice_form_page):
         practice_form_page.open_page()
