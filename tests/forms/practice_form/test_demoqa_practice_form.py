@@ -3,8 +3,7 @@
 class TestPracticeForm:
 
     def test_success_submission_practice_form(self, practice_form_page):
-        practice_form_page.open_page()
-        practice_form_page.registration_random_user_and_submit_form()
+        practice_form_page.open_page().registration_random_user_and_submit_form()
 
     def test_successful_filling_table_practice_form(self, practice_form_page):
         practice_form_page.open_page()

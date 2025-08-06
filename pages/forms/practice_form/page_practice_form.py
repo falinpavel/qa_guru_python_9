@@ -9,10 +9,10 @@ class PracticeFormPage:
     URL = '/automation-practice-form'
 
     user = Users().choose_random_user()
-    print(user)
 
-    def open_page(self) -> browser:
+    def open_page(self):
         browser.open(self.URL)
+        return self
 
     def registration_random_user_and_submit_form(self) -> None:
         browser.element('#firstName').should(be.blank).type(self.user.first_name).should(be.not_.blank).should(
