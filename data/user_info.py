@@ -8,7 +8,6 @@ fake = Faker('ru_RU')
 
 @dataclass
 class User:
-
     first_name: str
     last_name: str
     user_email: str
@@ -45,17 +44,19 @@ class UsersForTests:
                      gender=fake.random_elements(elements=('Male', 'Female', 'Other'), length=1)[0],
                      user_number="8" + "".join([str(random.randint(0, 9)) for _ in range(9)]),
                      birth_day=str(random.randint(a=4, b=28)),
-                     birth_month=fake.random_elements(elements=('January', 'February', 'March', 'April', 'May',
-                                                                'June', 'July', 'August', 'September', 'October',
-                                                                'November', 'December'),
-                                                      length=1)[0],
+                     birth_month=fake.random_elements(elements=(
+                         'January', 'February', 'March', 'April', 'May',
+                         'June', 'July', 'August', 'September', 'October',
+                         'November', 'December'),
+                         length=1)[0],
                      birth_year=str(fake.year()),
-                     subjects=list(fake.random_elements(elements=('Maths', 'English', 'Computer Science',
-                                                                  'Chemistry', 'Physics', 'Biology', 'Accounting',
-                                                                  'Arts', 'Commerce', 'Economics', 'History'),
-                                                        length=random.randint(a=2, b=4))),
-                     hobbies=list(fake.random_elements(elements=('Sports', 'Music', 'Reading'),
-                                                       length=random.randint(a=1, b=2))),
+                     subjects=list(fake.random_elements(elements=(
+                         'Maths', 'English', 'Computer Science',
+                         'Chemistry', 'Physics', 'Biology', 'Accounting',
+                         'Arts', 'Commerce', 'Economics', 'History'),
+                         length=random.randint(a=2, b=4))),
+                     hobbies=list(fake.random_elements(elements=(
+                         'Sports', 'Music', 'Reading'), length=random.randint(a=1, b=2))),
                      current_address=fake.address(),
                      # state=fake.random_elements(elements=('NCR', 'Uttar Pradesh',
                      # 'Haryana', 'Rajasthan'), length=1)[0], TODO!!! fix
