@@ -1,4 +1,4 @@
-from selene import browser, be, have
+from selene import browser, be, have, command
 from selene.core.condition import Condition
 
 from config.links import Links
@@ -24,11 +24,11 @@ class TextBoxPage:
             have.attribute("value").value(self.user.current_address))
         browser.element('#permanentAddress').should(be.blank).type(self.user.permanent_address).should(
             be.not_.blank).should(have.attribute("value").value(self.user.permanent_address))
-        browser.element('#submit').click()
+        browser.element('#submit').perform(command.js.scroll_into_view).click()
         return self
 
     def should_all_values_after_submit(self) -> 'TextBoxPage':
-        browser.element('.border').should(
+        browser.element('.border').perform(command.js.scroll_into_view).should(
             Condition.by_and(have.text(f'Name:{self.user.first_name} {self.user.last_name}'),
                              have.text(f'Email:{self.user.user_email}'),
                              have.text(f'Current Address :{self.user.current_address}'),

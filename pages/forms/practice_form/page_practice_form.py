@@ -1,5 +1,5 @@
 from datetime import datetime
-from selene import browser, be, have
+from selene import browser, be, have, command
 
 from config.links import Links
 from const import UPLOADED_FILE
@@ -41,12 +41,12 @@ class PracticeFormPage:
         for hobby in self.user.hobbies:
             browser.all('label[class="custom-control-label"]').element_by(
                 have.text(hobby)).should(be.visible).click().should(be.enabled)
-        browser.element('#uploadPicture').send_keys(UPLOADED_FILE)
+        browser.element('#uploadPicture').perform(command.js.scroll_into_view).send_keys(UPLOADED_FILE)
         browser.element('#currentAddress').should(be.visible).should(be.blank).type(self.user.current_address).should(
             be.not_.blank).should(have.attribute("value").value(self.user.current_address))
         browser.element('#state').click().all('[tabindex="-1"]').element_by(have.text(self.user.state)).click()
         browser.element('#city').click().all('[tabindex="-1"]').element_by(have.text(self.user.city)).click()
-        browser.element('#submit').should(be.clickable).click()
+        browser.element('#submit').perform(command.js.scroll_into_view).click()
         return self
 
     def should_that_table_be_filled(self) -> 'PracticeFormPage':
