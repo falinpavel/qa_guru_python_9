@@ -3,14 +3,15 @@ from selene import browser, be, have
 
 from config.links import Links
 from const import UPLOADED_FILE
-from data.user_info import UsersForTests as User
+from data.user_info import PracticeFormUserGenerator
 
 
 class PracticeFormPage:
 
     URL = Links.PRACTICE_FORM
 
-    user = User().choose_random_user()
+    user = PracticeFormUserGenerator().get_random_user()
+    print(user)
 
     def open_page(self):
         browser.open(self.URL)

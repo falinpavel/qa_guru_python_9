@@ -19,7 +19,7 @@ class TestPracticeForm:
         demoqa.page_practice_form.open_page()
         demoqa.page_practice_form.should_all_texts_into_form()
 
-    def test_registration_practice_form_and_go_to_text_box(self):
+    def test_registration_practice_form_and_go_to_registration_text_box_page(self):
         demoqa.page_practice_form.open_page()
         demoqa.page_practice_form.registration_random_user_and_submit_form()
         demoqa.page_practice_form.should_that_table_be_filled()

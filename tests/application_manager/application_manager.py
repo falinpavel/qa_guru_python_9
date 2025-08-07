@@ -6,6 +6,7 @@ from pages.teft_panel.left_panel import LeftPanel, LeftPanelElements, LeftPanelF
 class ApplicationManager:
 
     def __init__(self):
+
         self.page_practice_form = PracticeFormPage()
         self.page_text_box = TextBoxPage()
 
