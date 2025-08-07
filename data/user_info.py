@@ -8,7 +8,6 @@ fake = Faker('ru_RU')
 
 @dataclass
 class User:
-
     first_name: str
     last_name: str
     user_email: str
@@ -50,15 +49,15 @@ class UsersForTests:
                                                                 'November', 'December'),
                                                       length=1)[0],
                      birth_year=str(fake.year()),
-                     subjects=list(fake.random_elements(elements=('Maths', 'English', 'Computer Science',
-                                                                  'Chemistry', 'Physics', 'Biology', 'Accounting',
-                                                                  'Arts', 'Commerce', 'Economics', 'History'),
-                                                        length=random.randint(a=2, b=4))),
-                     hobbies=list(fake.random_elements(elements=('Sports', 'Music', 'Reading'),
-                                                       length=random.randint(a=1, b=2))),
+                     subjects=list(set(fake.random_elements(elements=('Maths', 'English', 'Computer Science',
+                                                                      'Chemistry', 'Physics', 'Biology', 'Accounting',
+                                                                      'Arts', 'Commerce', 'Economics', 'History'),
+                                                            length=random.randint(a=2, b=4)))),
+                     hobbies=list(set(fake.random_elements(elements=('Sports', 'Music', 'Reading'),
+                                                           length=random.randint(a=1, b=3)))),
                      current_address=fake.address(),
                      # state=fake.random_elements(elements=('NCR', 'Uttar Pradesh',
-                     # 'Haryana', 'Rajasthan'), length=1)[0], TODO!!! fix
+                     # 'Haryana', 'Rajasthan'), length=1)[0], TODO!!! fix it
                      state='Uttar Pradesh',
                      city=fake.random_elements(elements=('Agra', 'Lucknow', 'Merrut'), length=1)[0])
             users.append(_)
