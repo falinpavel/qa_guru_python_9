@@ -26,3 +26,4 @@ class TestPracticeForm:
         demoqa.left_panel.click_to_forms()
         demoqa.left_panel.click_to_elements()
         demoqa.left_panel_elements.click_to_text_box()
+        demoqa.page_text_box.registration_random_user_and_submit_form().should_all_values_after_submit()
