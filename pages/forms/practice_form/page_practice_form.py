@@ -1,4 +1,4 @@
-from selene import browser, be, have
+from selene import browser, be, have, command
 from const import UPLOADED_FILE
 
 
@@ -76,12 +76,13 @@ class PracticeFormPage:
         """
         TODO! Make this method universal, DRY it
         """
-        browser.element('#state').click().element('#react-select-3-option-1').click()
+        browser.element('#state').click().element('#react-select-3-option-1').perform(
+            command.js.scroll_into_view).click()
         browser.element('#city').click().element('#react-select-4-option-1').click()
 
     @staticmethod
     def submit_form() -> None:
-        browser.element('#submit').click()
+        browser.element('#submit').perform(command.js.scroll_into_view).click()
 
     @staticmethod
     def should_form_be_submitted(message: str, no_submitted: bool = False) -> None:
