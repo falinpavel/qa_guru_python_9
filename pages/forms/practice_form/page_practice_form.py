@@ -3,14 +3,14 @@ from selene import browser, be, have
 
 from config.links import Links
 from const import UPLOADED_FILE
-from data.user_info import UsersForTests as Users
+from data.user_info import UsersForTests as User
 
 
 class PracticeFormPage:
 
     URL = Links.PRACTICE_FORM
 
-    user = Users().choose_random_user()
+    user = User().choose_random_user()
 
     def open_page(self):
         browser.open(self.URL)
@@ -66,6 +66,7 @@ class PracticeFormPage:
             have.text(self.user.current_address))
         table_element.element_by(have.text('State and City')).all('td').second.should(
             have.text(f"{self.user.state} {self.user.city}"))
+        browser.element('#closeLargeModal').click()
 
     @staticmethod
     def should_all_texts_into_form() -> None:

@@ -6,7 +6,7 @@ from selenium import webdriver
 from const import TMP_DIR
 
 
-@pytest.fixture(scope="session", autouse=True)
+@pytest.fixture(scope="session")
 def browser_options():
     driver_options = webdriver.ChromeOptions()
     driver_options.page_load_strategy = 'eager'
@@ -30,7 +30,7 @@ def browser_options():
     return driver_options
 
 
-@pytest.fixture(scope="function", autouse=True)
+@pytest.fixture(scope="class", autouse=True)
 def browser_open_and_quit(browser_options):
     browser.config.driver_options = browser_options
     yield
