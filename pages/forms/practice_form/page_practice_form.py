@@ -34,7 +34,7 @@ class PracticeFormPage:
             have.attribute("value").value(self.user.birth_year)).click()
         browser.element('[role="listbox"]').should(be.visible).click().all('div[role="option"]').element_by(
             have.text(self.user.birth_day)).click()
-        browser.element('#dateOfBirthInput').should(be.not_.blank).should(have.attribute("value").value(
+        browser.element('#dateOfBirthInput').should(be.visible).should(have.attribute("value").value(
             f'{int(self.user.birth_day):02d} {self.user.birth_month[:3]} {self.user.birth_year}'))
         for subject in self.user.subjects:
             browser.element('#subjectsInput').should(be.visible).type(subject).press_enter()
