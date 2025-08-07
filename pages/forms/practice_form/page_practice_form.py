@@ -1,5 +1,5 @@
 from datetime import datetime
-from selene import browser, be, have
+from selene import browser, be, have, command
 from const import UPLOADED_FILE
 from data.user_info import UsersForTests as Users
 
@@ -39,12 +39,12 @@ class PracticeFormPage:
         for hobby in self.user.hobbies:
             browser.all('label[class="custom-control-label"]').element_by(
                 have.text(hobby)).click().should(be.enabled)
-        browser.element('#uploadPicture').send_keys(UPLOADED_FILE)
+        browser.element('#uploadPicture').perform(command.js.scroll_into_view).send_keys(UPLOADED_FILE)
         browser.element('#currentAddress').should(be.blank).type(self.user.current_address).should(
             be.not_.blank).should(have.attribute("value").value(self.user.current_address))
         browser.element('#state').click().all('[tabindex="-1"]').element_by(have.text(self.user.state)).click()
         browser.element('#city').click().all('[tabindex="-1"]').element_by(have.text(self.user.city)).click()
-        browser.element('#submit').should(be.clickable).click()
+        browser.element('#submit').perform(command.js.scroll_into_view).should(be.clickable).click()
 
     def should_that_table_be_filled(self) -> None:
         table_element = browser.all('table.table-dark tbody tr')
@@ -65,6 +65,7 @@ class PracticeFormPage:
             have.text(self.user.current_address))
         table_element.element_by(have.text('State and City')).all('td').second.should(
             have.text(f"{self.user.state} {self.user.city}"))
+        browser.element('#closeLargeModal').should(be.clickable).click()
 
     @staticmethod
     def should_all_texts_into_form() -> None:
