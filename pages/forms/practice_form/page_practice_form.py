@@ -8,6 +8,10 @@ from data.user_info import PracticeFormUserGenerator
 
 class PracticeFormPage:
 
+    @property
+    def practice_form_table(self):
+        return browser.all('table.table-dark tbody tr')
+
     URL = Links.PRACTICE_FORM
 
     user = PracticeFormUserGenerator().get_random_user()
@@ -50,23 +54,22 @@ class PracticeFormPage:
         return self
 
     def should_that_table_be_filled(self) -> 'PracticeFormPage':
-        table_element = browser.all('table.table-dark tbody tr')
-        table_element.element_by(have.text('Student Name')).all('td').second.should(
+        self.practice_form_table.element_by(have.text('Student Name')).all('td').second.should(
             have.text(f"{self.user.first_name} {self.user.last_name}"))
-        table_element.element_by(have.text('Student Email')).all('td').second.should(
+        self.practice_form_table.element_by(have.text('Student Email')).all('td').second.should(
             have.text(self.user.user_email))
-        table_element.element_by(have.text('Gender')).all('td').second.should(have.text(self.user.gender))
-        table_element.element_by(have.text('Mobile')).all('td').second.should(have.text(self.user.user_number))
-        table_element.element_by(have.text('Date of Birth')).all('td').second.should(
+        self.practice_form_table.element_by(have.text('Gender')).all('td').second.should(have.text(self.user.gender))
+        self.practice_form_table.element_by(have.text('Mobile')).all('td').second.should(have.text(self.user.user_number))
+        self.practice_form_table.element_by(have.text('Date of Birth')).all('td').second.should(
             have.text(f'{self.user.birth_day} {self.user.birth_month},{self.user.birth_year}'))
-        table_element.element_by(have.text('Subjects')).all('td').second.should(
+        self.practice_form_table.element_by(have.text('Subjects')).all('td').second.should(
             have.text(', '.join(self.user.subjects)))
-        table_element.element_by(have.text('Hobbies')).all('td').second.should(
+        self.practice_form_table.element_by(have.text('Hobbies')).all('td').second.should(
             have.text(', '.join(self.user.hobbies)))
-        table_element.element_by(have.text('Picture')).all('td').second.should(have.text("file.txt"))
-        table_element.element_by(have.text('Address')).all('td').second.should(
+        self.practice_form_table.element_by(have.text('Picture')).all('td').second.should(have.text("file.txt"))
+        self.practice_form_table.element_by(have.text('Address')).all('td').second.should(
             have.text(self.user.current_address))
-        table_element.element_by(have.text('State and City')).all('td').second.should(
+        self.practice_form_table.element_by(have.text('State and City')).all('td').second.should(
             have.text(f"{self.user.state} {self.user.city}"))
         browser.element('#closeLargeModal').click()
         return self
