@@ -1,4 +1,4 @@
-from tests.application_manager.application_manager import demoqa
+from application_manager.application_manager import demoqa
 
 
 class TestPracticeForm:
