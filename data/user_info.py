@@ -81,7 +81,7 @@ class PracticeFormUserGenerator:
                                     user_email=fake.unique.email(),
                                     gender=fake.random_elements(elements=('Male', 'Female', 'Other'), length=1)[0],
                                     user_number="8" + "".join([str(random.randint(0, 9)) for _ in range(9)]),
-                                    birth_day=str(random.randint(a=4, b=28)),
+                                    birth_day=str(random.randint(a=1, b=29)),
                                     birth_month=fake.random_elements(elements=(
                                         'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
                                         'September', 'October', 'November', 'December'),
