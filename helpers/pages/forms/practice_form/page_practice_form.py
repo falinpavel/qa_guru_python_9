@@ -38,7 +38,7 @@ class PracticeFormPage:
             Condition.by_and(
                 have.attribute("value").value(f'{int(user.birth_day):02d} {user.birth_month[:3]} {user.birth_year}')
             )
-        ) # TODO! Optimize
+        ) # TODO! Optimize this
         for subject in user.subjects:
             browser.element('#subjectsInput').should(be.visible).type(subject).press_enter()
         for hobby in user.hobbies:
