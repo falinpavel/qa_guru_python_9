@@ -31,7 +31,7 @@ class PracticeFormPage:
         browser.element('.react-datepicker__year-select').should(be.visible).click().all('[value]').element_by(
             have.attribute("value").value(user.birth_year)).click()
         browser.element('[class=react-datepicker__month][role="listbox"]').should(
-            be.visible).click().all('div[role="option"]').element_by(have.text(user.birth_day)).click()
+            be.visible).all('div[role="option"]').element_by(have.text(user.birth_day)).click()
         # browser.element('#dateOfBirthInput').should(be.visible).should(have.attribute("value").value(
         #     f'{int(user.birth_day):02d} {user.birth_month[:3]} {user.birth_year}'))
         browser.element('#dateOfBirthInput').should(
