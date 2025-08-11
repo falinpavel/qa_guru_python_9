@@ -1,4 +1,4 @@
-from data.user_info import User
+from helpers.data.user_info import User
 from helpers.pages.forms.practice_form.page_practice_form import practice_form_page
 
 
