@@ -1,4 +1,4 @@
-from application_manager.application_manager import demoqa
+from helpers.application_manager.application_manager import demoqa
 
 
 class TestNavigateOnLeftPanel:

@@ -1,6 +1,6 @@
-from pages.elements.text_box.page_text_box import TextBoxPage
-from pages.forms.practice_form.page_practice_form import PracticeFormPage
-from pages.teft_panel.left_panel import LeftPanel, LeftPanelElements, LeftPanelForms
+from helpers.pages.elements.text_box.page_text_box import TextBoxPage
+from helpers.pages.forms.practice_form.page_practice_form import PracticeFormPage
+from helpers.pages.teft_panel.left_panel import LeftPanel, LeftPanelElements, LeftPanelForms
 
 
 class ApplicationManager:

@@ -3,10 +3,10 @@ import pytest
 from selene.support.shared import browser
 from selenium import webdriver
 
-from const import TMP_DIR
+from const import RESOURCES_DIR
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def browser_options():
     driver_options = webdriver.ChromeOptions()
     driver_options.page_load_strategy = 'eager'
@@ -22,7 +22,7 @@ def browser_options():
         "profile.default_content_setting_values.notifications": 2,
         "credentials_enable_service": False,
         "profile.password_manager_enabled": False,
-        "download.default_directory": TMP_DIR,
+        "download.default_directory": RESOURCES_DIR,
         "download.prompt_for_download": False,
         "safebrowsing.enabled": True
     }
@@ -30,7 +30,7 @@ def browser_options():
     return driver_options
 
 
-@pytest.fixture(scope="class", autouse=True)
+@pytest.fixture(scope="function", autouse=True)
 def browser_open_and_quit(browser_options):
     browser.config.driver_options = browser_options
     yield

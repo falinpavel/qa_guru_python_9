@@ -1,8 +1,8 @@
 from selene import browser, be, have, command
 from selene.core.condition import Condition
 
-from config.links import Links
-from data.user_info import TextBoxUserGenerator
+from helpers.config.links import Links
+from helpers.data.user_info import TextBoxUserGenerator
 
 
 class TextBoxPage:

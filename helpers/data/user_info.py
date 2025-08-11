@@ -81,7 +81,7 @@ class PracticeFormUserGenerator:
                                     user_email=fake.unique.email(),
                                     gender=fake.random_elements(elements=('Male', 'Female', 'Other'), length=1)[0],
                                     user_number="8" + "".join([str(random.randint(0, 9)) for _ in range(9)]),
-                                    birth_day=str(random.randint(a=1, b=29)),
+                                    birth_day=str(random.randint(a=12, b=27)),
                                     birth_month=fake.random_elements(elements=(
                                         'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
                                         'September', 'October', 'November', 'December'),
@@ -90,10 +90,10 @@ class PracticeFormUserGenerator:
                                     subjects=list(set(fake.random_elements(elements=(
                                         'Maths', 'English', 'Computer Science', 'Chemistry', 'Physics', 'Biology',
                                         'Accounting', 'Arts', 'Commerce', 'Economics', 'History'),
-                                        length=random.randint(a=2, b=4)))),
+                                        length=random.randint(a=2, b=4), unique=True))),
                                     hobbies=list(set(fake.random_elements(elements=(
                                         'Sports', 'Music', 'Reading'),
-                                        length=random.randint(a=1, b=3)))),
+                                        length=random.randint(a=1, b=3), unique=True))),
                                     current_address=fake.address(),
                                     # state=fake.random_elements(elements=('NCR', 'Uttar Pradesh',
                                     # 'Haryana', 'Rajasthan'), length=1)[0], TODO!!! fix it

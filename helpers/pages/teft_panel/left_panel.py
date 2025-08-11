@@ -1,6 +1,6 @@
-from selene import browser, be, have, command
+from selene import browser, command
 
-from config.links import Links
+from helpers.config.links import Links
 
 
 class LeftPanel:

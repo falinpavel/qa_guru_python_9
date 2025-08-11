@@ -1,9 +1,10 @@
 from datetime import datetime
 from selene import browser, be, have, command
+from selene.core.condition import Condition
 
-from config.links import Links
+from helpers.config.links import Links
 from const import UPLOADED_FILE
-from data.user_info import PracticeFormUserGenerator
+from helpers.data.user_info import PracticeFormUserGenerator
 
 
 class PracticeFormPage:
@@ -37,9 +38,9 @@ class PracticeFormPage:
         browser.element('.react-datepicker__year-select').should(be.visible).click().all('[value]').element_by(
             have.attribute("value").value(self.user.birth_year)).click()
         browser.element('[class=react-datepicker__month][role="listbox"]').should(
-            be.visible).click().all('div[role="option"]').element_by(have.text(self.user.birth_day)).click()
-        browser.element('#dateOfBirthInput').should(be.visible).should(have.attribute("value").value(
-            f'{int(self.user.birth_day):02d} {self.user.birth_month[:3]} {self.user.birth_year}'))
+            be.visible).all('div[role="option"]').element_by(have.text(self.user.birth_day)).click()
+        browser.element('#dateOfBirthInput').should(Condition.by_and(have.attribute("value").value(
+            f'{int(self.user.birth_day):02d} {self.user.birth_month[:3]} {self.user.birth_year}')))# TODO! Optimize
         for subject in self.user.subjects:
             browser.element('#subjectsInput').should(be.visible).type(subject).press_enter()
         for hobby in self.user.hobbies:
